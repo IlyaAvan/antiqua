@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html { height: -webkit-fill-available; }
+
+body {
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  padding-top: var(--sat);
+  overflow-x: hidden;
+}
+
+@layer components {
+  .btn-primary {
+    @apply flex items-center justify-center gap-2 w-full py-3.5 px-6;
+    @apply bg-antiqua-coal text-antiqua-bg font-display font-bold text-base;
+    @apply rounded-xl border border-antiqua-coal transition-all duration-150 active:scale-[0.98];
+  }
+  .btn-primary:hover { @apply bg-antiqua-bronze border-antiqua-bronze; }
+  .btn-primary:disabled { @apply opacity-40 cursor-not-allowed; }
+
+  .btn-secondary {
+    @apply flex items-center justify-center gap-2 px-4 py-2.5;
+    @apply bg-transparent text-antiqua-coal font-body font-medium text-sm;
+    @apply rounded-lg border border-antiqua-border transition-all duration-150 active:scale-[0.98];
+  }
+  .btn-secondary:hover { @apply bg-antiqua-surface; }
+
+  .card { @apply bg-white rounded-2xl border border-antiqua-border overflow-hidden; }
+
+  .section-label {
+    @apply text-[10px] font-semibold tracking-[2.5px] uppercase;
+    color: #8B6914;
+  }
+
+  .tag-pill { @apply inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-antiqua-surface text-antiqua-muted border border-antiqua-border; }
+  .tag-positive { @apply bg-green-50 text-green-700 border-green-200; }
+  .tag-caution { @apply bg-amber-50 text-amber-700 border-amber-200; }
+
+  .form-input {
+    @apply w-full text-sm px-3.5 py-2.5 rounded-xl border border-antiqua-border bg-white text-antiqua-coal;
+    @apply focus:outline-none focus:border-antiqua-bronze transition-colors placeholder:text-antiqua-muted/50;
+  }
+
+  .screen-header { @apply px-5 pt-8 pb-4; }
+  .eyebrow { @apply text-[10px] font-semibold tracking-[2.5px] uppercase mb-1; color: #8B6914; }
+}
+
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+@keyframes spin { to { transform:rotate(360deg); } }
+@keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.15)} }
+@keyframes mapPulse { 0%,100%{transform:scale(1);opacity:.25} 50%{transform:scale(2.2);opacity:0} }
+
+.animate-fade-in { animation: fadeIn .3s ease both; }
+.animate-slide-up { animation: slideUp .35s cubic-bezier(.32,.72,0,1) both; }
+.animate-spin-logo { animation: spin 2s linear infinite; transform-origin: 22px 22px; }
+.animate-pulse-dot { animation: pulseDot 1.4s ease-in-out infinite; }
+.animate-map-pulse { animation: mapPulse 2.5s ease-in-out infinite; }
+
+.hide-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+.hide-scrollbar::-webkit-scrollbar { display:none; }
+
+.bottom-safe { padding-bottom: max(env(safe-area-inset-bottom), 8px); }
+
+@media (display-mode: standalone) {
+  body { user-select: none; -webkit-user-select: none; }
+  input, textarea, [contenteditable] { user-select: text; -webkit-user-select: text; }
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #8B6914 0%, #D4A843 50%, #8B6914 100%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #8B6914, #D4A843);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.card-lifted {
+  @apply bg-white rounded-2xl border border-antiqua-border;
+  box-shadow: 0 1px 3px rgba(28, 24, 18, 0.06), 0 4px 12px rgba(28, 24, 18, 0.04);
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #D4A843, transparent);
+  opacity: 0.4;
+}
+
+.tag-pill {
+  @apply inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-1 rounded-full;
+  @apply bg-antiqua-surface text-antiqua-muted border border-antiqua-border;
+}
+.tag-positive { @apply bg-green-50 text-green-700 border-green-200; }
+.tag-caution  { @apply bg-amber-50 text-amber-700 border-amber-200; }
+.tag-info     { @apply bg-blue-50 text-blue-700 border-blue-200; }
+
+.shimmer {
+  background: linear-gradient(90deg, #EFEBE4 25%, #F7F3EE 50%, #EFEBE4 75%);
+  background-size: 200% 100%;
+  animation: shimmerAnim 1.5s infinite;
+}
+@keyframes shimmerAnim { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
